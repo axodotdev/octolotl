@@ -1,6 +1,21 @@
 # octolotl
 > 🐙 a caching middleware layer for interacting with the GH api
 
+## Local Development
+
+`octolotl` is a Cloudflare worker. You will need Node v16 or later.
+
+```
+# install dependencies
+npm i
+
+# run locally
+npm start
+
+# deploy
+npm run deploy
+```
+
 ## License
 
 Licensed under either of
