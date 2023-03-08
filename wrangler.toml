@@ -1,9 +1,9 @@
-name = "releases"
+name = "octolotl"
 main = "src/index.js"
 compatibility_date = "2023-03-08"
 usage_model = "bundled"
 env = { }
 
 routes = [
-	{ pattern = "releases.octolotl.axodotdev.host", custom_domain = true },
+	{ pattern = "octolotl.axodotdev.host", custom_domain = true },
 ]
