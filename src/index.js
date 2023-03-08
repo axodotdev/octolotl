@@ -15,7 +15,7 @@ export default {
           let gh_response = fetch(gh_request);
           return gh_response;
        } else {
-           return new Response(e.stack, { status: 400 });
+           return new Response("Unsupported", { status: 400 });
         }
     } catch(e) {
       return new Response(e.stack, { status: 500 });
