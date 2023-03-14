@@ -4,6 +4,6 @@ compatibility_date = "2023-03-08"
 usage_model = "bundled"
 env = { }
 
-# routes = [
-# 	{ pattern = "octolotl.axodotdev.host", custom_domain = true },
-# ]
+routes = [
+	{ pattern = "octolotl.axodotdev.host", custom_domain = true },
+]
