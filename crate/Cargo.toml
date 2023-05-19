@@ -1,0 +1,11 @@
+[package]
+name = "octolotl"
+description = "lib proxying requests to github for stability and performance"
+license = "MIT or APACHE2.0"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+miette = "5.9.0"
+reqwest = { version = "0.11.13", features = ["blocking", "json"] }
+thiserror = "1.0.40"
