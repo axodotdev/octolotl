@@ -4,7 +4,8 @@ use reqwest::Response;
 use errors::*;
 
 mod errors;
-mod releases;
+pub use errors::OctolotlError;
+pub mod request;
 
 pub trait Requestable {
     fn github_url(&self) -> String;
