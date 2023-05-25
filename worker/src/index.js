@@ -13,7 +13,7 @@ export default {
           let gh_response = fetch(gh_request);
           return gh_response;
        } else {
-           return new Response("Unsupported", { status: 400 });
+          return new Response(index(request), { status: 400 });
        }
     } catch(e) {
       return new Response(e.stack, { status: 500 });
@@ -21,16 +21,42 @@ export default {
   }
 }
 
-function releases(org, repo) {
-    let github_url = "https://api.github.com/repos/" + org + "/" + repo + "/releases";
+function index(request) {
+    return `
+    >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o<
+
+
+    welcome to octolotl v0.0.0
+    a proxy for github, by axodotdev
+
+
+    ROUTES
+    ======
+
+    releases                GET /releases/{owner}/{repo_name}
+    release downloads       GET /dowloads/{owner}/{repo_name}/{tag}/{filename}
+
+
+    >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o< >o_o<
+
+
+
+
+    * received an unhandlable request:
+
+    ${request.method} ${request.url}`
+}
+
+function releases(owner, repo) {
+    let github_url = "https://api.github.com/repos/" + owner + "/" + repo + "/releases";
     let headers = new Headers({
         "User-Agent" : "axodotdev-octolotl"
     });
     return new Request(github_url, { headers: headers });
 }
 
-function downloads(org, repo, tag, filename) {
-    let github_url = "https://github.com/" + org + "/" + repo + "/releases/download/" + tag + "/" + filename;
+function downloads(owner, repo, tag, filename) {
+    let github_url = "https://github.com/" + owner + "/" + repo + "/releases/download/" + tag + "/" + filename;
     let headers = new Headers({
         "User-Agent" : "axodotdev-octolotl"
     });
