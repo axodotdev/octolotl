@@ -2,6 +2,7 @@ mod funding;
 mod release_asset;
 mod releases;
 
+pub use funding::FundingFile;
 pub use release_asset::ReleaseAsset;
 pub use releases::Releases;
 
