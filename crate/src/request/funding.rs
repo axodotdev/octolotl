@@ -18,9 +18,15 @@ impl FundingFile {
 
 impl Requestable for FundingFile {
     fn github_url(&self) -> String {
-       format!("https://api.github.com/repos/{}/{}/contents/.github/FUNDING.yml", self.repo.owner, self.repo.name)
+        format!(
+            "https://api.github.com/repos/{}/{}/contents/.github/FUNDING.yml",
+            self.repo.owner, self.repo.name
+        )
     }
     fn proxy_url(&self) -> String {
-       format!("https://{}/funding/{}/{}", &PROXY_HOSTNAME, self.repo.owner, self.repo.name)
+        format!(
+            "https://{}/funding/{}/{}",
+            &PROXY_HOSTNAME, self.repo.owner, self.repo.name
+        )
     }
 }

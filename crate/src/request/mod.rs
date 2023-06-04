@@ -1,6 +1,6 @@
+mod funding;
 mod release_asset;
 mod releases;
-mod funding;
 
 pub use release_asset::ReleaseAsset;
 pub use releases::Releases;
