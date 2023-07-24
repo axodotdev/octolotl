@@ -66,7 +66,9 @@ function user(original_headers) {
 function releases(owner, repo) {
     let github_url = "https://api.github.com/repos/" + owner + "/" + repo + "/releases";
     let headers = new Headers({
-        "User-Agent" : "axodotdev-octolotl"
+        "User-Agent" : "axodotdev-octolotl",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version" : "2022-11-28"
     });
     return new Request(github_url, { headers: headers });
 }
@@ -74,7 +76,9 @@ function releases(owner, repo) {
 function downloads(owner, repo, tag, filename) {
     let github_url = "https://github.com/" + owner + "/" + repo + "/releases/download/" + tag + "/" + filename;
     let headers = new Headers({
-        "User-Agent" : "axodotdev-octolotl"
+        "User-Agent" : "axodotdev-octolotl",
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version" : "2022-11-28"
     });
     return new Request(github_url, { headers: headers });
 }
