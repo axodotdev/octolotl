@@ -1,15 +1,28 @@
-use reqwest::header::{HeaderMap, USER_AGENT};
+use reqwest::header::HeaderMap;
 use reqwest::Response;
 
 use errors::*;
 
 mod errors;
+mod headers;
+mod request;
+
 pub use errors::OctolotlError;
-pub mod request;
+pub use headers::Headers;
+
+const PROXY_HOSTNAME: &str = "octolotl.axodotdev.host";
 
 pub trait Requestable {
     fn github_url(&self) -> String;
     fn proxy_url(&self) -> String;
+    fn proxy_headers(&self) -> HeaderMap {
+        let mut headers = Headers::new();
+        headers.proxy().inner
+    }
+    fn github_headers(&self) -> HeaderMap {
+        let mut headers = Headers::new();
+        headers.github().inner
+    }
 }
 
 pub struct Request<'a> {
@@ -41,31 +54,28 @@ impl<'a> Request<'a> {
     }
 
     async fn via_proxy(&self) -> Result<Response> {
-        Ok(request(&self.item.proxy_url(), &self.client)
-            .await?
-            .error_for_status()?)
+        Ok(request(
+            &self.item.proxy_url(),
+            &self.client,
+            self.item.proxy_headers(),
+        )
+        .await?
+        .error_for_status()?)
     }
 
     async fn via_github(&self) -> Result<Response> {
-        Ok(request(&self.item.github_url(), &self.client)
-            .await?
-            .error_for_status()?)
+        Ok(request(
+            &self.item.github_url(),
+            &self.client,
+            self.item.github_headers(),
+        )
+        .await?
+        .error_for_status()?)
     }
 }
 
-async fn request(url: &str, client: &reqwest::Client) -> Result<Response> {
-    let mut headers = HeaderMap::new();
-    headers.insert(
-        USER_AGENT,
-        user_agent().parse().expect("user agent was invalid"),
-    );
+async fn request(url: &str, client: &reqwest::Client, headers: HeaderMap) -> Result<Response> {
     Ok(client.get(url).headers(headers).send().await?)
-}
-
-fn user_agent() -> String {
-    const VERSION: &str = env!("CARGO_PKG_VERSION");
-    const NAME: &str = env!("CARGO_PKG_NAME");
-    format!("{}-{}", NAME, VERSION)
 }
 
 fn warn_with_proxy_error(e: OctolotlError) {

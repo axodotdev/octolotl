@@ -1,7 +1,6 @@
 use crate::request::Repo;
 use crate::Requestable;
-
-const PROXY_HOSTNAME: &str = "octolotl.axodotdev.host";
+use crate::PROXY_HOSTNAME;
 
 #[derive(Debug)]
 pub struct ReleaseAsset {
