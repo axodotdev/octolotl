@@ -1,8 +1,10 @@
 mod release_asset;
 mod releases;
+mod user;
 
 pub use release_asset::ReleaseAsset;
 pub use releases::Releases;
+pub use user::User;
 
 #[derive(Debug)]
 struct Repo {
