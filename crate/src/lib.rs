@@ -5,7 +5,7 @@ use errors::*;
 
 mod errors;
 mod headers;
-mod request;
+pub mod request;
 
 pub use errors::OctolotlError;
 pub use headers::Headers;

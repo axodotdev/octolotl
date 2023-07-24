@@ -10,6 +10,7 @@ use crate::PROXY_HOSTNAME;
 pub struct User {}
 
 impl User {
+    #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
         Self {}
     }

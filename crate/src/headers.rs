@@ -6,6 +6,7 @@ pub struct Headers {
 }
 
 impl Headers {
+    #[allow(clippy::new_without_default)]
     pub fn new() -> Self {
         Self {
             inner: HeaderMap::new(),
