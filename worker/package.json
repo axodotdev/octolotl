@@ -2,11 +2,12 @@
   "name": "releases",
   "version": "0.0.0",
   "devDependencies": {
-    "wrangler": "^2.20.0"
+    "wrangler": "^3.3.0"
   },
   "private": true,
   "scripts": {
     "start": "wrangler dev",
-    "deploy": "wrangler publish"
+    "deploy-prod": "wrangler deploy --env prod",
+    "deploy-staging": "wrangler deploy --env staging"
   }
 }
