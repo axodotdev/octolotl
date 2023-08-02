@@ -38,7 +38,7 @@ function index(request) {
     ======
 
     releases                GET /releases/{owner}/{repo_name}
-    release downloads       GET /dowloads/{owner}/{repo_name}/{tag}/{filename}
+    release downloads       GET /downloads/{owner}/{repo_name}/{tag}/{filename}
     user                    GET /user
 
 
