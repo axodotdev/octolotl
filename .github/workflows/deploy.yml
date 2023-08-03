@@ -1,0 +1,21 @@
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose an environment to deploy to: <staging|prod>'
+        required: true
+        default: 'staging'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Publish app
+        run: |
+          cd worker
+          npm i
+          npm run deploy-${{ github.event.inputs.environment }}
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}

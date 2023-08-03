@@ -1,0 +1,22 @@
+name: Oranda Integration
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '11 7 * * 1,4'
+
+jobs:
+  test:
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v3
+      with:
+        repository: "axodotdev/oranda"
+        ref: "latest"
+    - name: Run cargo test
+      run: |
+        cargo test
+      
